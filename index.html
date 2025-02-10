@@ -23,7 +23,7 @@
         
         .thumbnails {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
@@ -86,6 +86,14 @@
             color: #333;
         }
         
+        .now-playing {
+            text-align: center;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #333;
+            font-weight: bold;
+        }
+        
         .video-player {
             width: 100%;
             max-width: 1000px;
@@ -107,34 +115,35 @@
     <div class="video-gallery">
         <div class="thumbnails">
             <div class="thumbnail-container"> 
-                <div class="thumbnail" onclick="playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C')">
+                <div class="thumbnail" onclick="playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C', 1)">
                     <img src="/api/placeholder/250/141" alt="Video 1">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 1</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8')">
+                <div class="thumbnail" onclick="playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8', 2)">
                     <img src="/api/placeholder/250/141" alt="Video 2">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 2</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI')">
+                <div class="thumbnail" onclick="playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI', 3)">
                     <img src="/api/placeholder/250/141" alt="Video 3">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 3</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w')">
+                <div class="thumbnail" onclick="playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w', 4)">
                     <img src="/api/placeholder/250/141" alt="Video 4">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 4</div>
             </div>
         </div>
+        <div class="now-playing">Now Playing: <span id="currentVideo">Video 1</span></div>
         <div class="video-player">
             <iframe id="mainVideo" allowfullscreen></iframe>
         </div>
@@ -143,12 +152,14 @@
     <script>
         // Initialize with first video when page loads
         window.onload = function() {
-            playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C');
+            playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C', 1);
         }
 
-        function playVideo(videoId) {
+        function playVideo(videoId, videoNumber) {
             const iframe = document.getElementById('mainVideo');
+            const currentVideo = document.getElementById('currentVideo');
             iframe.src = `https://drive.google.com/file/d/${videoId}/preview`;
+            currentVideo.textContent = `Video ${videoNumber}`;
         }
     </script>
 </body>
