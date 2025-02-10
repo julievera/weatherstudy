@@ -43,10 +43,23 @@
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.2s;
+            outline: none; /* Remove default outline */
         }
         
         .thumbnail:hover {
             transform: translateY(-5px);
+        }
+
+        .thumbnail:focus {
+            outline: 3px solid #1e90ff; /* Default browser blue */
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.3);
+        }
+
+        .thumbnail.selected {
+            outline: 3px solid #1e90ff;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 2px rgba(30, 144, 255, 0.3);
         }
         
         .thumbnail img {
@@ -115,28 +128,48 @@
     <div class="video-gallery">
         <div class="thumbnails">
             <div class="thumbnail-container"> 
-                <div class="thumbnail" onclick="playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C', 1)">
+                <div class="thumbnail" 
+                    onclick="playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C', 1)" 
+                    onkeypress="(event.key === 'Enter' || event.key === ' ') && playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C', 1)"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Play Video 1">
                     <img src="/api/placeholder/250/141" alt="Video 1">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 1</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8', 2)">
+                <div class="thumbnail" 
+                    onclick="playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8', 2)"
+                    onkeypress="(event.key === 'Enter' || event.key === ' ') && playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8', 2)"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Play Video 2">
                     <img src="/api/placeholder/250/141" alt="Video 2">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 2</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI', 3)">
+                <div class="thumbnail" 
+                    onclick="playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI', 3)"
+                    onkeypress="(event.key === 'Enter' || event.key === ' ') && playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI', 3)"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Play Video 3">
                     <img src="/api/placeholder/250/141" alt="Video 3">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 3</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w', 4)">
+                <div class="thumbnail" 
+                    onclick="playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w', 4)"
+                    onkeypress="(event.key === 'Enter' || event.key === ' ') && playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w', 4)"
+                    tabindex="0"
+                    role="button"
+                    aria-label="Play Video 4">
                     <img src="/api/placeholder/250/141" alt="Video 4">
                     <div class="play-icon"></div>
                 </div>
@@ -158,8 +191,19 @@
         function playVideo(videoId, videoNumber) {
             const iframe = document.getElementById('mainVideo');
             const currentVideo = document.getElementById('currentVideo');
+            
+            // Update video and title
             iframe.src = `https://drive.google.com/file/d/${videoId}/preview`;
             currentVideo.textContent = `Video ${videoNumber}`;
+            
+            // Remove selected class from all thumbnails
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked thumbnail
+            const selectedThumbnail = document.querySelector(`[aria-label="Play Video ${videoNumber}"]`);
+            selectedThumbnail.classList.add('selected');
         }
     </script>
 </body>
