@@ -107,28 +107,28 @@
     <div class="video-gallery">
         <div class="thumbnails">
             <div class="thumbnail-container"> 
-                <div class="thumbnail" onclick="playVideo('https://drive.google.com/file/d/1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C/preview')">
+                <div class="thumbnail" onclick="playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C')">
                     <img src="/api/placeholder/250/141" alt="Video 1">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 1</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('https://drive.google.com/file/d/1YuovlexNuhUIKXinZUpHfq0bjFQJemt8/preview')">
+                <div class="thumbnail" onclick="playVideo('1YuovlexNuhUIKXinZUpHfq0bjFQJemt8')">
                     <img src="/api/placeholder/250/141" alt="Video 2">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 2</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('https://drive.google.com/file/d/1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI/preview')">
+                <div class="thumbnail" onclick="playVideo('1gwB8QY6v8eXPs3p9lmCUsnHzVXC48yAI')">
                     <img src="/api/placeholder/250/141" alt="Video 3">
                     <div class="play-icon"></div>
                 </div>
                 <div class="video-label">Video 3</div>
             </div>
             <div class="thumbnail-container">
-                <div class="thumbnail" onclick="playVideo('https://drive.google.com/file/d/1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w/preview')">
+                <div class="thumbnail" onclick="playVideo('1ui4zHl_9UyrBEG1m9afGCgJzDU3KCq3w')">
                     <img src="/api/placeholder/250/141" alt="Video 4">
                     <div class="play-icon"></div>
                 </div>
@@ -141,6 +141,11 @@
     </div>
     
     <script>
+        // Initialize with first video when page loads
+        window.onload = function() {
+            playVideo('1cBpHzDDk2KasHDUvk9aRcl-OeBrudg7C');
+        }
+
         function playVideo(videoId) {
             const iframe = document.getElementById('mainVideo');
             iframe.src = `https://drive.google.com/file/d/${videoId}/preview`;
