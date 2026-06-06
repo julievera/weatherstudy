@@ -11,3 +11,10 @@ Study 3: [description]
 --> Contains coded data from 2000 individual comments and 200 stitched conversations
 
 --> Raw data from conversations and invidiual comments is included. 
+
+EXTRAS:
+
+North Platte: [description]
+
+--> Analysis on hashtag-based search on the Whitman, Nebraska tornado. 
+
